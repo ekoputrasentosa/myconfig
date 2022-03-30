@@ -1,0 +1,44 @@
+set exrc
+set relativenumber
+set nu
+set nohlsearch
+set hidden
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nowrap
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+set termguicolors
+set scrolloff=7
+set backspace=indent,eol,start
+syntax enable
+set cursorline
+set splitbelow splitright
+
+call plug#begin()
+
+Plug 'morhetz/gruvbox'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jiangmiao/auto-pairs'
+Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sirver/ultisnips'
+
+call plug#end()
+
+colorscheme gruvbox
+
+let g:airline#extensions#tabline#enabled = 1
+
+nmap cc <Plug>NERDCommenterToggle
+vmap cc <Plug>NERDCommenterToggle
