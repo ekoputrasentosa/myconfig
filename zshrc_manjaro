@@ -119,9 +119,6 @@ else
   tmux switch-client -t "$session_name"
 fi
 
-neofetch
-
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -129,7 +126,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # Aliases Settings
 alias vim='lvim'
 alias hx='helix'
-alias exit='pkill alacritty'
 # alias neovide="neovide --neovim-bin /home/ekoputra/.local/bin/lvim --maximized"
 
 # >>> conda initialize >>>
@@ -147,3 +143,12 @@ fi
 unset __conda_setup
 ## <<< conda initialize <<<
 conda deactivate
+
+
+#exit if tmux has been terminated
+tmux list-sessions > /dev/null
+if [[ $? -ne 0 ]] ; then
+    exit 1
+fi
+
+neofetch
