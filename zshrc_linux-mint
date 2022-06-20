@@ -81,6 +81,7 @@ plugins=(git
 	zsh-autosuggestions
 )
 
+# ZSH_AUTOSUGGEST_HISTORY_IGNORE=*
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -108,6 +109,54 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias neofetch="neofetch --ascii $HOME/.config/neofetch/lm_ascii"
+session_name="main"
+
+function powerline_precmd() {
+    PS1="$(powerline-shell --shell zsh $?)"
+}
+
+#powerline-shell
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" ]; then
+    install_powerline_precmd
+fi
+
+# 1. First you check if a tmux session exists with a given name.
+tmux has-session -t=$session_name 2> /dev/null
+
+# 2. Create the session if it doesn't exists.
+if [[ $? -ne 0 ]]; then
+  TMUX='' tmux new-session -d -s "$session_name"
+fi
+
+# 3. Attach if outside of tmux, switch if you're in tmux.
+if [[ -z "$TMUX" ]]; then
+  touch ~/.temp_key
+  tmux attach -t "$session_name"
+else
+  touch ~/.temp_key
+  tmux switch-client -t "$session_name"
+fi
+
+alias vim="lvim"
+
+export PATH="$HOME/.local/bin:$PATH"
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+source ~/.zsh_functions/_quit
+#exit if tmux has been terminated
+cat ~/.temp_key
+if [[ $? -ne 0 ]] ; then
+    exit 1
+fi
+
 neofetch
-alias vim='nvim'
- export PATH="/usr/local/bin:$PATH"
