@@ -8,8 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="agnoster"
-ZSH_THEME="amuse"
+ZSH_THEME="intheloop"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,8 +70,18 @@ ZSH_THEME="amuse"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions python)
+plugins=(git
+	bundler
+	dotenv
+	macos
+	rake
+	rbenv
+	ruby
+	npm
+	zsh-autosuggestions
+)
 
+# ZSH_AUTOSUGGEST_HISTORY_IGNORE=*
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -98,9 +107,9 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias neofetch="neofetch --source $HOME/.config/neofetch/manjaro"
+alias neofetch="neofetch --ascii $HOME/.config/neofetch/lm_ascii"
+alias vim="lvim"
+alias yay=paru
 
 session_name="main"
 
@@ -114,58 +123,27 @@ fi
 
 # 3. Attach if outside of tmux, switch if you're in tmux.
 if [[ -z "$TMUX" ]]; then
+  touch ~/.temp_key
   tmux attach -t "$session_name"
 else
+  touch ~/.temp_key
   tmux switch-client -t "$session_name"
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="$HOME/.local/bin:$PATH"
+fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# Aliases Settings
-alias vim='lvim'
-alias hx='helix'
-# alias neovide="neovide --neovim-bin /home/ekoputra/.local/bin/lvim --maximized"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/ekoputra/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/ekoputra/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/ekoputra/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/ekoputra/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-## <<< conda initialize <<<
-conda deactivate
-
-#PowerLine SHell
-function powerline_precmd() {
-    PS1="$(powerline-shell --shell zsh $?)"
-}
-
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-
-if [ "$TERM" != "linux" ]; then
-    install_powerline_precmd
-fi
-
+source ~/.zsh_functions/_quit
 #exit if tmux has been terminated
-tmux list-sessions > /dev/null
+cat ~/.temp_key
 if [[ $? -ne 0 ]] ; then
     exit 1
 fi
 
-neofetch
+#add path to use Sudoedit using Lvim
+export SUDO_EDITOR=/home/user044/.local/bin/lvim
+
+eval "$(starship init zsh)"
+
+# neofetch
+afetch
