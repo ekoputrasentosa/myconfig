@@ -30,39 +30,8 @@ alias neofetch="neofetch --ascii $HOME/.config/neofetch/lm_ascii"
 alias vim="lvim"
 alias yay=paru
 
-# Starting TMUX automatically
-session_name="main"
-
-# 1. First you check if a tmux session exists with a given name.
-tmux has-session -t=$session_name 2> /dev/null
-
-# 2. Create the session if it doesn't exists.
-if [[ $? -ne 0 ]]; then
-  TMUX='' tmux new-session -d -s "$session_name"
-fi
-
-# 3. Attach if outside of tmux, switch if you're in tmux.
-if [[ -z "$TMUX" ]]; then
-  touch ~/.temp_key
-  tmux attach -t "$session_name"
-else
-  touch ~/.temp_key
-  tmux switch-client -t "$session_name"
-fi
-
-# custom 'quit' command for exit both tmux and alacritty, type exit only for exit tmux
-export PATH="$HOME/.local/bin:$PATH"
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-
-source ~/.zsh_functions/_quit
-#exit if tmux has been terminated
-cat ~/.temp_key
-if [[ $? -ne 0 ]] ; then
-    exit 1
-fi
-
-eval "$(starship init zsh)"
-
+# eval "$(starship init zsh)"
+eval "$(oh-my-posh init zsh --config ~/.poshthemes/peru.omp.json)"
 # Option for showing at startup terminal
 # neofetch
 # afetch
