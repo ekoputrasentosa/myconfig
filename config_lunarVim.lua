@@ -6,6 +6,7 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
+-- Put as additional config in config.lua inside ~/.config/lvim/
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 vim.opt.mouse = "a" -- allow the mouse to be used in neovim
 vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
@@ -23,14 +24,13 @@ vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.sidescrolloff = 8
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 vim.opt.colorcolumn = "110"
+vim.opt.guicursor = ""
 
--- diagnostics
-local border_opts = { border = 'rounded', focusable = false, scope = 'line' }
-vim.diagnostic.config({ virtual_text = false, float = border_opts })
+vim.api.nvim_set_keymap("v", "y", '"+y', { noremap = true })
 
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save = false
+lvim.format_on_save.enabled = false
 lvim.colorscheme = "tokyonight"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -84,7 +84,6 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
@@ -203,7 +202,6 @@ lvim.plugins = {
         }
     },
 }
-
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
 --   pattern = { "*.json", "*.jsonc" },
