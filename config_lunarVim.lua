@@ -1,6 +1,9 @@
 --[[
 lvim is the global options object
 
+Reference of setting lsp python
+https://youtube.com/clip/Ugkx4tCPYjpoGoN50-c5qrl-yE0A3OndCtM-
+
 Linters should be
 filled in as strings with either
 a global executable or a path to
@@ -25,13 +28,14 @@ vim.opt.sidescrolloff = 8
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 vim.opt.colorcolumn = "110"
 vim.opt.guicursor = ""
-
-vim.api.nvim_set_keymap("v", "y", '"+y', { noremap = true })
+vim.opt.cmdheight = 1
+vim.opt.clipboard = ""
 
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 lvim.colorscheme = "tokyonight"
+lvim.transparent_window = true
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -39,6 +43,14 @@ lvim.colorscheme = "tokyonight"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+
+lvim.lsp.buffer_mappings.normal_mode["<C-u>"] = nil
+lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
+lvim.lsp.buffer_mappings.normal_mode["<C-d>"] = nil
+lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
+
+lvim.keys.visual_mode["<C-c>"] = '"+y'
+
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -81,7 +93,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- }
 
 -- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+-- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompi
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
