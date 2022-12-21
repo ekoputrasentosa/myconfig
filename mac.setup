@@ -1,0 +1,18 @@
+  240  defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+  369  defaults write com.apple.finder QuitMenuItem -bool YES
+  434  defaults write com.apple.screencapture location /Users/ekoputra/Pictures/Screenshot 
+  811  defaults write com.sublimetext.2 ApplePressAndHoldEnabled -bool false
+  812  defaults write com.sublimetext.4 ApplePressAndHoldEnabled -bool false
+  813  defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
+ 1866  sudo defaults write /Library/Preferences/com.apple.security.libraryvalidation.plist DisableLibraryValidation -bool true
+ 1875  defaults write com.apple.finder QuitMenuItem -bool NO
+ 2304  defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+ 4431  git add -p src/etl/bangunindoetl/rest_api/api_scheduler/hadoop_query/writer/writer_hadoop_query.py
+ 4438  defaults write NSGlobalDomain KeyRepeat -int 1
+ 4439  defaults write NSGlobalDomain InitialKeyRepeat -int 10\n\n
+ 4554  history | grep write
+ 4555  defaults write NSGlobalDomain KeyRepeat -int 6
+ 4557  defaults write NSGlobalDomain InitialKeyRepeat -int 25
+ 4559  history | grep write
+ 4562  defaults write NSGlobalDomain InitialKeyRepeat -int 15
+ 4563  defaults write NSGlobalDomain KeyRepeat -int 3
