@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $PWD == "/Users/ekoputra/Documents/work/tsel_bigdata" ]; then
+    nvim src/etl/bangunindoetl/config/conf.py
+else if [ $PWD == "/Users/ekoputra/Documents/work/tsel_bigdata/src/etl/hisr-transform" ]; then
+    nvim src/hisr/main/main.go
+else if [ $PWD == "/Users/ekoputra/Documents/work/tsel_bigdata/src/etl/hisr-transform-ingestion" ]; then
+    nvim src/hisr/main/main.go
+else
+    nvim .
+fi;
