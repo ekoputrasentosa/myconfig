@@ -8,8 +8,7 @@ window:
   padding:
     x: 8
     y: 8
-  opacity: 1
-
+  # opacity: 0.94 
   # Values for `startup_mode`:
   #   - Windowed
   #   - Maximized
@@ -47,39 +46,40 @@ font:
   normal:
     # Font family
     #
-    family: "FiraCode Nerd Font"
+    family: "Iosevka Nerd Font"
 
     style: Regular
 
   # Point size
-  size: 13.5
+  size: 14
+  # size: 14
 
 # Generate automatic with Alacritty-themes
 colors:
   # Default colors
   primary:
-    background: '#282a36'
-    foreground: '#eff0eb'
+    background: '#1a1a1a'
+    foreground: '#c4c5b5'
 
   # Normal colors
   normal:
-    black: '#282a36'
-    red: '#ff5c57'
-    green: '#5af78e'
-    yellow: '#f3f99d'
-    blue: '#57c7ff'
-    magenta: '#ff6ac1'
-    cyan: '#9aedfe'
-    white: '#f1f1f0'
+    black: '#1a1a1a'
+    red: '#f4005f'
+    green: '#98e024'
+    yellow: '#fa8419'
+    blue: '#9d65ff'
+    magenta: '#f4005f'
+    cyan: '#58d1eb'
+    white: '#c4c5b5'
 
   # Bright colors
   bright:
-    black: '#686868'
-    red: '#ff5c57'
-    green: '#5af78e'
-    yellow: '#f3f99d'
-    blue: '#57c7ff'
-    magenta: '#ff6ac1'
-    cyan: '#9aedfe'
-    white: '#f1f1f0'
-theme: Snazzy
+    black: '#625e4c'
+    red: '#f4005f'
+    green: '#98e024'
+    yellow: '#e0d561'
+    blue: '#9d65ff'
+    magenta: '#f4005f'
+    cyan: '#58d1eb'
+    white: '#f6f6ef'
+theme: Monokai-Soda
