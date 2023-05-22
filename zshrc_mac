@@ -6,6 +6,7 @@ ZSH_THEME="intheloop"
 plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting
+    mac-zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -22,7 +23,8 @@ alias ls="exa"
 alias ll="exa -alh --header"
 alias tree="exa --tree --header"
 alias cat="bat"
-alias t="tmux"
+alias t="env TERM=screen-256color tmux"
+alias ta="tmux attach"
 alias n="nnn -de"
 alias lg="lazygit"
 alias vv="$HOME/.zsh_functions/./vim_custom"
@@ -32,6 +34,7 @@ alias sudoedit="sudo -e"
 alias zt="z tsel"
 alias zh="z hisr && vv"
 alias zhi="z ingestion && vv"
+alias zn="z nvim && vv"
 
 # brew for running under rosetta 2
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
@@ -55,8 +58,12 @@ export LANG=en_US.UTF-8
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 export PATH="$HOME/Library/Python/3.8/bin:$PATH"
+# export PATH="$HOME/.nvim-macos/bin:$PATH"
 
 set -o vi
+
+# supported italic font
+export TERM="xterm-256color-italic"
 
 # eval "$(oh-my-posh init zsh --config ~/.poshthemes/peru.omp.json)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/themes/peru-edited.omp.json)"
@@ -96,9 +103,10 @@ export FZF_CTRL_R_OPTS="--reverse"
 export FZF_TMUX_OPTS="-p 40%"
 
 # term
-export TERM="xterm-256color"
-[[ -n $TMUX ]] && export TERM="screen-256color"
+# export TERM="xterm-256color"
+# [[ -n $TMUX ]] && export TERM="screen-256color"
 
 # my neovim config
 export MYVIMRC='~/.config/nvim/lua/brew/init.lua'
 export PYTHONPATH=$PYTHONPATH:/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages
+export PYTHONPATH=$PYTHONPATH:/Users/ekoputra/Library/Python/3.8/lib/python/site-packages
