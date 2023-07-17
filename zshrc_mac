@@ -1,12 +1,12 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="intheloop"
-
 plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting
     mac-zsh-completions
+    docker
+    docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -30,6 +30,8 @@ alias lg="lazygit"
 alias vv="$HOME/.zsh_functions/./vim_custom"
 alias push_master_test="$HOME/.zsh_functions/./rsync_custom"
 alias sudoedit="sudo -e"
+alias python="python3"
+alias p="python"
 
 alias zt="z tsel"
 alias zh="z hisr && vv"
@@ -42,9 +44,6 @@ alias ibrew='arch -x86_64 /usr/local/bin/brew'
 # Force xterm-color on ssh sessions
 alias ssh='TERM=xterm-256color ssh'
 
-# trying love
-alias love='/Applications/love.app/Contents/MacOS/love'
-
 #add path to use Sudoedit using Lvim
 export EDITOR=/usr/local/bin/nvim
 export SUDO_EDITOR=/usr/local/bin/nvim
@@ -55,8 +54,8 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH=~/.npm-global/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+# export PATH="/usr/local/opt/openjdk/bin:$PATH"
+# export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 # export PATH="$HOME/.nvim-macos/bin:$PATH"
 
@@ -65,9 +64,11 @@ set -o vi
 # supported italic font
 export TERM="xterm-256color-italic"
 
+# All EVAL
 # eval "$(oh-my-posh init zsh --config ~/.poshthemes/peru.omp.json)"
 eval "$(oh-my-posh init zsh --config $HOME/.config/themes/peru-edited.omp.json)"
 eval "$(zoxide init zsh)"
+eval "$(direnv hook zsh)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/ekoputra/Documents/google-cloud-sdk/path.zsh.inc' ];
@@ -78,6 +79,10 @@ fi
 if [ -f '/Users/ekoputra/Documents/google-cloud-sdk/completion.zsh.inc' ];
 then . '/Users/ekoputra/Documents/google-cloud-sdk/completion.zsh.inc';
 fi
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -106,7 +111,17 @@ export FZF_TMUX_OPTS="-p 40%"
 # export TERM="xterm-256color"
 # [[ -n $TMUX ]] && export TERM="screen-256color"
 
+# docker platform default
+# export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
 # my neovim config
 export MYVIMRC='~/.config/nvim/lua/brew/init.lua'
 export PYTHONPATH=$PYTHONPATH:/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages
 export PYTHONPATH=$PYTHONPATH:/Users/ekoputra/Library/Python/3.8/lib/python/site-packages
+
+# for docker complation
+fpath+=($ZSH/plugins/docker)
+autoload -U compinit && compinit
+
+# JAVA_HOME Path
+export JAVA_HOME=$(/usr/libexec/java_home)
