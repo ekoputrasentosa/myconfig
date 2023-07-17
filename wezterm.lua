@@ -21,13 +21,23 @@ wezterm.on('toggle-opacity', toggle_opacity)
 
 config.keys = {
   {
+    key = 'Enter',
+    mods = 'ALT',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
+    mods = 'CMD',
+    key = 'f',
+    action = wezterm.action.ToggleFullScreen,
+  },
+  {
     mods = "CMD",
     key = "T",
     action = wezterm.action.EmitEvent 'toggle-opacity',
   }
 }
 
-config.native_macos_fullscreen_mode = true
+-- config.native_macos_fullscreen_mode = true
 config.window_padding = {
   left = '0.7cell',
   right = '0.5cell',
