@@ -17,7 +17,21 @@ local toggle_opacity = function (window)
   window:set_config_overrides(overrides)
 end
 
+local toggle_light_mode = function (window)
+  local bold_font = wezterm.font{ family = 'SFMono Nerd Font', weight = 'DemiBold' }
+  local overrides = window:get_config_overrides() or {}
+  if not overrides.font then
+    overrides.font = bold_font
+    overrides.colors = { cursor_bg = 'black', }
+  else
+    overrides.font = nil
+    overrides.colors = nil
+  end
+  window:set_config_overrides(overrides)
+end
+
 wezterm.on('toggle-opacity', toggle_opacity)
+wezterm.on('toggle-bold-font', toggle_light_mode)
 
 config.keys = {
   {
@@ -34,6 +48,11 @@ config.keys = {
     mods = "CMD",
     key = "T",
     action = wezterm.action.EmitEvent 'toggle-opacity',
+  },
+  {
+    mods = "CMD",
+    key = "l",
+    action = wezterm.action.EmitEvent 'toggle-bold-font',
   }
 }
 
@@ -45,7 +64,7 @@ config.window_padding = {
   bottom = '0cell',
 }
 
-config.font = wezterm.font{ family = 'Ligalex Mono', style = 'Normal' }
+config.font = wezterm.font{ family = 'Ligalex Mono', weight = 'Regular' }
 config.font_size = 13.5
 config.cell_width = 0.9
 config.line_height = 1.05
