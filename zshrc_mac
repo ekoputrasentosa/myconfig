@@ -7,6 +7,7 @@ plugins=(
     mac-zsh-completions
     docker
     docker-compose
+    # poetry
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -18,7 +19,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#20a267'
 
 # Aliases
 alias vim="nvim"
-alias z="zoxide"
 alias ls="exa"
 alias ll="exa -alh --header"
 alias tree="exa --tree --header"
@@ -27,6 +27,7 @@ alias t="env TERM=screen-256color tmux"
 alias ta="tmux attach"
 alias n="nnn -de"
 alias lg="lazygit"
+alias vi="nvim"
 alias vv="$HOME/.zsh_functions/./vim_custom"
 alias push_master_test="$HOME/.zsh_functions/./rsync_custom"
 alias sudoedit="sudo -e"
@@ -36,7 +37,7 @@ alias p="python"
 alias zt="z tsel"
 alias zh="z hisr && vv"
 alias zhi="z ingestion && vv"
-alias zn="z nvim && vv"
+alias zn="z config/nvim && vv"
 
 # brew for running under rosetta 2
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
@@ -44,7 +45,7 @@ alias ibrew='arch -x86_64 /usr/local/bin/brew'
 # Force xterm-color on ssh sessions
 alias ssh='TERM=xterm-256color ssh'
 
-#add path to use Sudoedit using Lvim
+#add path to use Sudoedit using Nvim
 export EDITOR=/usr/local/bin/nvim
 export SUDO_EDITOR=/usr/local/bin/nvim
 
@@ -57,7 +58,7 @@ export LANG=en_US.UTF-8
 # export PATH="/usr/local/opt/openjdk/bin:$PATH"
 # export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 export PATH="$HOME/Library/Python/3.8/bin:$PATH"
-# export PATH="$HOME/.nvim-macos/bin:$PATH"
+export PATH=~/.local/share/bob/nvim-bin:$PATH
 
 set -o vi
 
@@ -115,13 +116,17 @@ export FZF_TMUX_OPTS="-p 40%"
 # export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 # my neovim config
-export MYVIMRC='~/.config/nvim/lua/brew/init.lua'
-export PYTHONPATH=$PYTHONPATH:/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages
-export PYTHONPATH=$PYTHONPATH:/Users/ekoputra/Library/Python/3.8/lib/python/site-packages
+export MYVIMRC='~/.config/nvim/lua/eps/init.lua'
+# export PYTHONPATH=$PYTHONPATH:/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages
+# export PYTHONPATH=$PYTHONPATH:/Users/ekoputra/Library/Python/3.8/lib/python/site-packages
 
 # for docker complation
 fpath+=($ZSH/plugins/docker)
+fpath+=~/.zfunc
 autoload -U compinit && compinit
 
 # JAVA_HOME Path
+# export JAVA_HOME=$(/usr/libexec/java_home -v 11.0.22)
 export JAVA_HOME=$(/usr/libexec/java_home)
+export M2_HOME="/Users/ekoputra/maven"
+export PATH="${M2_HOME}/bin:${PATH}"
