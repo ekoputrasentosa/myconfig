@@ -34,25 +34,29 @@ wezterm.on('toggle-opacity', toggle_opacity)
 wezterm.on('toggle-bold-font', toggle_light_mode)
 
 config.keys = {
-  {
-    key = 'Enter',
-    mods = 'ALT',
+  { key = 'Enter', mods = 'ALT',
     action = wezterm.action.DisableDefaultAssignment,
   },
-  {
-    mods = 'CMD',
-    key = 'f',
+  { mods = 'CMD', key = 'f',
     action = wezterm.action.ToggleFullScreen,
   },
-  {
-    mods = "CMD",
-    key = "T",
+  { mods = "CMD", key = "T",
     action = wezterm.action.EmitEvent 'toggle-opacity',
   },
-  {
-    mods = "CMD",
-    key = "l",
+  { mods = "CMD", key = "b",
     action = wezterm.action.EmitEvent 'toggle-bold-font',
+  },
+  { mods = "CMD", key = "[",
+    action = wezterm.action.ActivateTabRelative(-1),
+  },
+  { mods = "CMD", key = "]",
+    action = wezterm.action.ActivateTabRelative(1),
+  },
+  { mods = "CMD|SHIFT", key = "[",
+    action = wezterm.action.MoveTabRelative(-1),
+  },
+  { mods = "CMD|SHIFT", key = "]",
+    action = wezterm.action.MoveTabRelative(1),
   }
 }
 
@@ -64,7 +68,10 @@ config.window_padding = {
   bottom = '0cell',
 }
 
-config.font = wezterm.font{ family = 'Ligalex Mono', weight = 'Regular' }
+config.font = wezterm.font_with_fallback({
+  { family = 'Ligalex Mono', weight = 'Regular' },
+  'SFMono Nerd Font',
+})
 config.font_size = 13.5
 config.cell_width = 0.9
 config.line_height = 1.05
