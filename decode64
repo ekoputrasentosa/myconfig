@@ -1,0 +1,10 @@
+# location ~/.zsh_functions/decode64
+#!/bin/bash
+
+hash=$1
+
+# Decode the base64 input
+decoded=$(echo "$hash" | base64 -d)
+
+# Add a new line to the decoded result
+echo -e "${decoded}"

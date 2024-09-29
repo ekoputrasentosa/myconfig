@@ -1,11 +1,10 @@
+# location ~/.zsh_functions/vim_custom
 #!/bin/bash
 
-if [ $PWD == "/Users/ekoputra/Documents/work/tsel_bigdata" ]; then
-    nvim src/etl/bangunindoetl/config/conf.py
-else if [ $PWD == "/Users/ekoputra/Documents/work/tsel_bigdata/src/etl/hisr-transform" ]; then
-    nvim src/hisr/main/main.go
-else if [ $PWD == "/Users/ekoputra/Documents/work/tsel_bigdata/src/etl/hisr-transform-ingestion" ]; then
+if [ $PWD == "/Users/ekoputra/Documents/work/tsel_bigdata/src/etl/hisr-transform" ]; then
+    go mod tidy && nvim src/hisr/main/main.go
+elif [ $PWD == "/Users/ekoputra/Documents/work/tsel_bigdata/src/etl/hisr-transform-ingestion" ]; then
     nvim src/hisr/main/main.go
 else
-    nvim .
+    nvim --
 fi;

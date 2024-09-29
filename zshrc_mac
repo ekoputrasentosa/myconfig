@@ -19,9 +19,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#20a267'
 
 # Aliases
 alias vim="nvim"
-alias ls="exa"
-alias ll="exa -alh --header"
-alias tree="exa --tree --header"
+alias ls="eza"
+alias ll="eza -alh --header"
+alias tree="eza --tree --header"
 alias cat="bat"
 alias t="env TERM=screen-256color tmux"
 alias ta="tmux attach"
@@ -46,8 +46,8 @@ alias ibrew='arch -x86_64 /usr/local/bin/brew'
 alias ssh='TERM=xterm-256color ssh'
 
 #add path to use Sudoedit using Nvim
-export EDITOR=/usr/local/bin/nvim
-export SUDO_EDITOR=/usr/local/bin/nvim
+export EDITOR=/Users/ekoputra/.local/share/bob/nvim-bin/nvim
+export SUDO_EDITOR=/Users/ekoputra/.local/share/bob/nvim-bin/nvim
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.zsh_functions:$PATH"
