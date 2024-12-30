@@ -33,6 +33,7 @@ alias push_master_test="$HOME/.zsh_functions/./rsync_custom"
 alias sudoedit="sudo -e"
 alias python="python3"
 alias p="python"
+alias gh="ghostty"
 
 alias zt="z tsel"
 alias zh="z hisr && vv"
@@ -59,6 +60,8 @@ export LANG=en_US.UTF-8
 # export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 export PATH=~/.local/share/bob/nvim-bin:$PATH
+export PATH="$PATH:$(go env GOPATH)/bin"
+export K9S_CONFIG_DIR="$HOME/.k9s"
 
 set -o vi
 
@@ -130,3 +133,6 @@ autoload -U compinit && compinit
 export JAVA_HOME=$(/usr/libexec/java_home)
 export M2_HOME="/Users/ekoputra/maven"
 export PATH="${M2_HOME}/bin:${PATH}"
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+export PATH=$PATH:$HOME/kubectl-plugins
+export PATH=$PATH:/opt/homebrew/opt/net-snmp/bin
