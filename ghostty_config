@@ -6,5 +6,7 @@ macos-titlebar-style = hidden
 theme = Monokai Soda
 cursor-style = block
 cursor-style-blink = true
+mouse-hide-while-typing = true
 adjust-cell-width = -10%
 adjust-cell-height = +5%
+window-padding-x = 8
